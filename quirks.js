@@ -1,4 +1,4 @@
-/* Object and Properties */
+/*** Object and Properties ***/
 if(typeof global !== "undefined") {
     console.log("Node: global, this", global, this); // global, {}
     console.log("Node: this === global", this === global); // false
@@ -39,7 +39,7 @@ console.log("Object.getOwnPropertyDescriptor(userDefined, \"name\")", Object.get
 // { value: "A", writable: true, enumerable: true, configurable: true }
 
 
-/* Context (this) */
+/*** Context (this) ***/
 var prop = "nullValue";
 
 this.otherProp = "otherNullValue";
@@ -69,9 +69,11 @@ otherFn(); // Node = undefined, Browser = "otherNullValue"
 arrowFn() // Node = (undefined, "otherNullValue"), Browser = ("nullValue", "otherNullValue") // Value of 'this' in an arrow function is retained from its immediately enclosing lexical context
 boundFn() // "someValue"
 boundArrowFn() // Node = (undefined, "otherNullValue"), Browser = ("nullValue", "otherNullValue") // Arrow function is uneffected with use of 'bind'
+setTimeout(anObject.method); // Node = undefined, Browser = "nullValue" // Same things happens in case of any event handler
+setTimeout(anObject.arrowMethod); // Node = (undefined, "otherNullValue"), Browser = ("nullValue", "otherNullValue")
 
 
-/* Closure (And Lexical Scope) */
+/*** Closure (And Lexical Scope) ***/
 var variable = 20;
 
 function enclosure() {
